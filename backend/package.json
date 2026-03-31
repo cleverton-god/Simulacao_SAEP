@@ -1,21 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "API de gerenciamento de tarefas",
-  "main": "server.js",
+  "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "express": "^4.18.2",
-    "pg": "^8.11.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.0"
+    "pg": "^8.11.5"
   }
 }
