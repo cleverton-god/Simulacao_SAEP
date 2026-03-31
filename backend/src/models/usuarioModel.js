@@ -9,6 +9,24 @@ exports.criar = async (nome, email) => {
 };
 
 exports.listar = async () => {
-    const result = await db.query('SELECT * FROM usuarios');
+    const result = await db.query('SELECT * FROM usuarios ORDER BY id ASC');
     return result.rows;
+};
+
+exports.buscarPorEmail = async (email) => {
+    const result = await db.query('SELECT * FROM usuarios WHERE email = $1', [email]);
+    return result.rows[0];
+};
+
+exports.atualizar = async (id, nome, email) => {
+    const result = await db.query(
+        'UPDATE usuarios SET nome = $1, email = $2 WHERE id = $3 RETURNING *',
+        [nome, email, id]
+    );
+    return result.rows[0];
+};
+
+exports.deletar = async (id) => {
+    const result = await db.query('DELETE FROM usuarios WHERE id = $1 RETURNING *', [id]);
+    return result.rows[0];
 };
