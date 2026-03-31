@@ -1,11 +1,11 @@
 const db = require('../database/db');
 
-exports.criar = async (dados) => {
+exports.criar = async ({ id_usuario, descricao, setor, prioridade }) => {
     const result = await db.query(
         `INSERT INTO tarefas 
-        (id_usuario, descricao, setor, prioridade, status) 
-        VALUES ($1, $2, $3, $4, 'a fazer') RETURNING *`,
-        [dados.id_usuario, dados.descricao, dados.setor, dados.prioridade]
+         (id_usuario, descricao, setor, prioridade, status) 
+         VALUES ($1, $2, $3, $4, 'a fazer') RETURNING *`,
+        [id_usuario, descricao, setor, prioridade]
     );
     return result.rows[0];
 };
