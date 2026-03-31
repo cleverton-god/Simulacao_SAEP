@@ -1,49 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de Tarefa</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Tarefa</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <span>Gerenciamento de Tarefas</span>
+    <div class="nav-links">
+      <a href="index.html">Gerenciar Tarefas</a>
+      <a href="cadastro-usuario.html">Cadastro de Usuários</a>
+      <a href="cadastro-tarefa.html">Cadastro de Tarefas</a>
+    </div>
+  </nav>
 
-  <body>
-    <nav>
-      <a href="index.html">Kanban</a>
-      <a href="cadastro-usuario.html">Usuários</a>
-      <a href="cadastro-tarefa.html">Tarefas</a>
-    </nav>
+  <div class="form-container">
     <h1>Cadastrar Tarefa</h1>
-
     <form id="formTarefa">
-      <input
-        type="text"
-        id="descricao"
-        placeholder="Descrição"
-        required
-      /><br /><br />
-
-      <input type="text" id="setor" placeholder="Setor" required /><br /><br />
-
+      <input type="text" id="descricao" placeholder="Descrição" required />
+      <input type="text" id="setor" placeholder="Setor" required />
       <select id="prioridade" required>
         <option value="">Prioridade</option>
         <option value="baixa">Baixa</option>
         <option value="media">Média</option>
-        <option value="alta">Alta</option></select
-      ><br /><br />
-
-      <input
-        type="number"
-        id="id_usuario"
-        placeholder="ID do usuário responsável"
-        required
-      /><br /><br />
-
+        <option value="alta">Alta</option>
+      </select>
+      <select id="id_usuario" required>
+        <option value="">Selecione Usuário</option>
+      </select>
       <button type="submit">Cadastrar</button>
     </form>
-
     <p id="mensagem"></p>
+  </div>
 
-    <script src="assets/js/cadastro-tarefa.js"></script>
-  </body>
+  <script src="assets/js/cadastro-tarefa.js"></script>
+</body>
 </html>

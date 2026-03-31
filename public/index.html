@@ -1,37 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kanban</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <span>Gerenciamento de Tarefas</span>
+    <div class="nav-links">
+      <a href="index.html">Gerenciar Tarefas</a>
+      <a href="cadastro-usuario.html">Cadastro de Usuários</a>
+      <a href="cadastro-tarefa.html">Cadastro de Tarefas</a>
+    </div>
+  </nav>
 
-  <body>
-    <nav>
-      <a href="index.html">Kanban</a>
-      <a href="cadastro-usuario.html">Usuários</a>
-      <a href="cadastro-tarefa.html">Tarefas</a>
-    </nav>
-    <h1>Gerenciamento de Tarefas</h1>
-
+  <div class="main-container">
     <div class="kanban">
       <div class="coluna">
         <h2>A Fazer</h2>
         <div id="afazer"></div>
       </div>
-
       <div class="coluna">
         <h2>Fazendo</h2>
         <div id="fazendo"></div>
       </div>
-
       <div class="coluna">
         <h2>Pronto</h2>
         <div id="pronto"></div>
       </div>
     </div>
 
-    <script src="assets/js/index.js"></script>
-  </body>
+    <div class="usuarios">
+      <h2>Usuários Cadastrados</h2>
+      <ul id="listaUsuarios"></ul>
+    </div>
+  </div>
+
+  <script src="assets/js/index.js"></script>
+</body>
 </html>
