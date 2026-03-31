@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Tarefa</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <nav>
+      <a href="index.html">Kanban</a>
+      <a href="cadastro-usuario.html">Usuários</a>
+      <a href="cadastro-tarefa.html">Tarefas</a>
+    </nav>
+    <h1>Cadastrar Tarefa</h1>
+
+    <form id="formTarefa">
+      <input
+        type="text"
+        id="descricao"
+        placeholder="Descrição"
+        required
+      /><br /><br />
+
+      <input type="text" id="setor" placeholder="Setor" required /><br /><br />
+
+      <select id="prioridade" required>
+        <option value="">Prioridade</option>
+        <option value="baixa">Baixa</option>
+        <option value="media">Média</option>
+        <option value="alta">Alta</option></select
+      ><br /><br />
+
+      <input
+        type="number"
+        id="id_usuario"
+        placeholder="ID do usuário responsável"
+        required
+      /><br /><br />
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <p id="mensagem"></p>
+
+    <script src="assets/js/cadastro-tarefa.js"></script>
+  </body>
+</html>
