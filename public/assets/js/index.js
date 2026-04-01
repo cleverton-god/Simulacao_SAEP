@@ -77,31 +77,41 @@ async function carregarTarefas() {
 }
 
 async function editarTarefa(tarefa) {
+    const resUsuarios = await fetch('/usuarios');
+    const usuarios = await resUsuarios.json();
+
     const conteudo = `
-        <input type="text" id="modal-descricao" value="${tarefa.descricao}" placeholder="Descrição" />
-        <input type="text" id="modal-setor" value="${tarefa.setor}" placeholder="Setor" />
-        <select id="modal-prioridade">
+        <input type="text" id="modal-descricao" value="${tarefa.descricao}" placeholder="Descrição" required />
+        <input type="text" id="modal-setor" value="${tarefa.setor}" placeholder="Setor" required />
+        <select id="modal-prioridade" required>
             <option value="baixa" ${tarefa.prioridade.toLowerCase() === 'baixa' ? 'selected' : ''}>Baixa</option>
             <option value="media" ${tarefa.prioridade.toLowerCase() === 'media' ? 'selected' : ''}>Média</option>
             <option value="alta" ${tarefa.prioridade.toLowerCase() === 'alta' ? 'selected' : ''}>Alta</option>
         </select>
-        <input type="text" id="modal-nome" value="${tarefa.nome}" placeholder="Vinculado a" />
+        <select id="modal-id_usuario" required>
+            <option value="">Selecione Responsável</option>
+            ${usuarios.map(u => `<option value="${u.id}" ${tarefa.id_usuario == u.id ? 'selected' : ''}>${u.nome}</option>`).join('')}
+        </select>
     `;
     abrirModal('Editar Tarefa', conteudo, async () => {
         const updated = {
             descricao: document.getElementById('modal-descricao').value,
             setor: document.getElementById('modal-setor').value,
             prioridade: document.getElementById('modal-prioridade').value,
-            nome: document.getElementById('modal-nome').value
+            id_usuario: parseInt(document.getElementById('modal-id_usuario').value)
         };
 
-        await fetch(`/tarefas/${tarefa.id}`, {
+        const res = await fetch(`/tarefas/${tarefa.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updated)
         });
 
-        carregarTarefas();
+        if (res.ok) {
+            carregarTarefas();
+        } else {
+            console.error('Erro:', res.status);
+        }
     });
 }
 
@@ -114,7 +124,6 @@ async function mudarStatus(id) {
     const select = document.getElementById(`status-${id}`);
     const novoStatus = select.value;
 
-    // Busca tarefa atual para preservar outros dados
     const res = await fetch(`/tarefas/${id}`);
     const tarefa = await res.json();
 

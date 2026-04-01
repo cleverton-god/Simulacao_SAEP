@@ -30,12 +30,12 @@ exports.listar = async () => {
     return result.rows;
 };
 
-exports.atualizar = async (id, descricao, setor, prioridade, status) => {
+exports.atualizar = async (id, descricao, setor, prioridade, status, id_usuario) => {
     const result = await db.query(
         `UPDATE tarefas SET 
-         descricao = $1, setor = $2, prioridade = $3, status = COALESCE($4, status)
+         descricao = $1, setor = $2, prioridade = $3, status = COALESCE($4, status), id_usuario = $6
          WHERE id = $5 RETURNING *`,
-        [descricao, setor, prioridade, status, id]
+        [descricao, setor, prioridade, status, id, id_usuario]
     );
     return result.rows[0];
 };

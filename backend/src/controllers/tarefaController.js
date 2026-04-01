@@ -40,14 +40,14 @@ exports.listarTarefas = async (req, res) => {
 
 exports.atualizarTarefa = async (req, res) => {
     const { id } = req.params;
-    const { descricao, setor, prioridade, status } = req.body;
+    const { descricao, setor, prioridade, status, id_usuario } = req.body;
 
-    if (!descricao || !setor || !prioridade) {
-        return res.status(400).json({ erro: 'Descrição, setor e prioridade são obrigatórios' });
+    if (!descricao || !setor || !prioridade || !id_usuario) {
+        return res.status(400).json({ erro: 'Todos os campos são obrigatórios' });
     }
 
     try {
-        const tarefa = await tarefaModel.atualizar(id, descricao, setor, prioridade, status);
+        const tarefa = await tarefaModel.atualizar(id, descricao, setor, prioridade, status, id_usuario);
         if (!tarefa) return res.status(404).json({ erro: 'Tarefa não encontrada' });
         res.json(tarefa);
     } catch (error) {
