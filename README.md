@@ -1,11 +1,10 @@
 # 🚀 Simulação SAEP - Gerenciador de Tarefas Kanban
 
-**Aluno**: Cleverton Rosa
+**Aluno**: Cleverton Rosa  
 **Professor**: Michel Tartas
 
 ## 🎯 Visão Geral
 Sistema **Kanban completo** para indústria alimentícia. Gerencia usuários e tarefas em colunas **A Fazer → Fazendo → Pronto** com integração total.
-
 
 ## 📋 Regras de Negócio Atendidas
 
@@ -19,33 +18,44 @@ Sistema **Kanban completo** para indústria alimentícia. Gerencia usuários e t
 | 3 colunas Kanban | ✅ |
 | Editar (preenchido) + Excluir + Status | ✅ |
 
-## 🏗️ Arquitetura do Projeto
+## 🏗️ **Arquitetura Completa do Projeto**
 
 ```
-Simulacao_SAEP/
-├── README.md                    # 📖 Você está aqui
-├── backend/                     # 🖥️ API Node/Express
-│   ├── package.json             # 🎯 nodemon `npm run dev`
+Simulacao_SAEP/                          # 🏠 Raiz
+├── LICENSE
+├── README.md                           # 📖 Este arquivo
+├── backend/                            # 🖥️ Backend Node.js
+│   ├── .gitignore
+│   ├── package-lock.json
+│   ├── package.json                    # 🎯 npm run dev (nodemon)
 │   └── src/
-│       ├── app.js               # 🚀 Server
-│       ├── controllers/         # 🧠 Lógica
-│       │   ├── tarefaController.js
-│       │   └── usuarioController.js
-│       ├── models/              # 💾 Models
-│       ├── routes/              # 🛤️ Rotas
-│       └── database/
-│           ├── db.js            # 🔌 Conexão PG
-│           └── setup_banco.sql  # 🗄️ Script SQL
-├── public/                      # 🎨 Frontend
-│   ├── index.html               # 📊 Kanban principal
-│   ├── cadastro-usuario.html    # 👥 Usuários
-│   ├── cadastro-tarefa.html     # 📝 Tarefas
+│       ├── app.js                      # 🚀 Servidor principal
+│       ├── controllers/
+│       │   ├── tarefaController.js     # 🧠 Lógica tarefas
+│       │   └── usuarioController.js    # 🧠 Lógica usuários
+│       ├── database/
+│       │   ├── db.js                   # 🔌 PostgreSQL
+│       │   └── setup_banco.sql         # 🗄️ Script SQL
+│       ├── models/
+│       │   ├── tarefaModel.js          # 💾 Model tarefa
+│       │   └── usuarioModel.js         # 💾 Model usuário
+│       └── routes/
+│           ├── tarefaRoutes.js         # 🛤️ Rotas tarefas
+│           └── usuarioRoutes.js        # 🛤️ Rotas usuários
+├── public/                             # 🎨 Frontend
+│   ├── cadastro-tarefa.html            # 📝 Criar tarefas
+│   ├── cadastro-usuario.html           # 👥 CRUD usuários
+│   ├── index.html                      # 📊 Kanban principal
 │   └── assets/
-│       ├── css/style.css        # 🎨 UI #0056b3
-│       └── js/*.js              # ⚡ JS
-└── diagramas/                   # 📐 Documentação
+│       ├── css/
+│       │   └── style.css               # 🎨 Segoe UI #0056b3
+│       └── js/
+│           ├── cadastro-tarefa.js      # ⚡ JS tarefas
+│           ├── cadastro-usuario.js     # ⚡ JS usuários
+│           └── index.js                # ⚡ Kanban (drag/select)
+└── docs/                               # 📐 Documentação
     ├── Diagrama de Caso de Uso/
-    │   └── caso-de-uso.png       # 🎭 Casos uso
+    │   └── caso-de-uso.png
     └── Diagrama Entidade-Relacionamento (DER)/
 ```
 
@@ -54,7 +64,7 @@ Simulacao_SAEP/
 Fonte: Segoe UI
 ├── Cores:
 │   ├── #0056b3  → Navbar/Botões/Títulos
-│   ├── #FFFFFF  → Fundo
+│   ├── #FFFFFF  → Fundo  
 │   └── #000000  → Texto
 └── Hover: #004494
 ```
@@ -70,15 +80,14 @@ npm run dev  # http://localhost:3000
 ```
 
 ### 2️⃣ Frontend
-```bash
-# Backend ↑ rodando
-Abrir: http://localhost:3000/public/index.html
+```
+Backend rodando → Abrir http://localhost:3000/public/index.html
 ```
 
-### Comandos Úteis
+### Comandos
 ```bash
-npm run dev     # Backend dev (nodemon)
-npm start       # Backend prod
+npm run dev     # Dev (nodemon)
+npm start       # Prod
 ```
 
 ## 🔧 Stack Tecnológica
@@ -87,12 +96,12 @@ npm start       # Backend prod
 | Backend | Node.js/Express/pg |
 | Frontend | HTML/CSS/JS Vanilla |
 | Banco | PostgreSQL |
-| Dev | Nodemon/Git |
+| Dev | Nodemon |
 
 ## 📚 Documentação
 - **SQL**: `backend/src/database/setup_banco.sql`
-- **DER**: `diagramas/Diagrama Entidade-Relacionamento (DER)/`
-- **Caso Uso**: `diagramas/Diagrama de Caso de Uso/caso-de-uso.png`
+- **DER**: `docs/Diagrama Entidade-Relacionamento (DER)/`
+- **Caso Uso**: `docs/Diagrama de Caso de Uso/caso-de-uso.png`
 
 ## ✅ Checklist de Entrega
 - [x] Código fonte completo
@@ -102,4 +111,4 @@ npm start       # Backend prod
 - [x] README detalhado
 - [x] Nodemon
 
-**Status**: **100% Conforme Especificação** 🎉  
+**Status**: **100% Conforme Especificação** 🎉
