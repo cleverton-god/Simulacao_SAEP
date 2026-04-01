@@ -16,6 +16,18 @@ exports.criarTarefa = async (req, res) => {
     }
 };
 
+exports.buscarTarefa = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const tarefa = await tarefaModel.buscarPorId(id);
+        if (!tarefa) return res.status(404).json({ erro: 'Tarefa não encontrada' });
+        res.json(tarefa);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ erro: 'Erro ao buscar tarefa' });
+    }
+};
+
 exports.listarTarefas = async (req, res) => {
     try {
         const tarefas = await tarefaModel.listar();
@@ -23,6 +35,24 @@ exports.listarTarefas = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ erro: 'Erro ao listar tarefas' });
+    }
+};
+
+exports.atualizarTarefa = async (req, res) => {
+    const { id } = req.params;
+    const { descricao, setor, prioridade, status } = req.body;
+
+    if (!descricao || !setor || !prioridade) {
+        return res.status(400).json({ erro: 'Descrição, setor e prioridade são obrigatórios' });
+    }
+
+    try {
+        const tarefa = await tarefaModel.atualizar(id, descricao, setor, prioridade, status);
+        if (!tarefa) return res.status(404).json({ erro: 'Tarefa não encontrada' });
+        res.json(tarefa);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ erro: 'Erro ao atualizar tarefa' });
     }
 };
 

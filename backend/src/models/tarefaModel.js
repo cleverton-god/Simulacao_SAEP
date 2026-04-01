@@ -10,6 +10,17 @@ exports.criar = async ({ id_usuario, descricao, setor, prioridade }) => {
     return result.rows[0];
 };
 
+exports.buscarPorId = async (id) => {
+    const result = await db.query(
+        `SELECT t.*, u.nome 
+         FROM tarefas t
+         JOIN usuarios u ON t.id_usuario = u.id
+         WHERE t.id = $1`,
+        [id]
+    );
+    return result.rows[0];
+};
+
 exports.listar = async () => {
     const result = await db.query(
         `SELECT t.*, u.nome 
@@ -17,6 +28,16 @@ exports.listar = async () => {
          JOIN usuarios u ON t.id_usuario = u.id`
     );
     return result.rows;
+};
+
+exports.atualizar = async (id, descricao, setor, prioridade, status) => {
+    const result = await db.query(
+        `UPDATE tarefas SET 
+         descricao = $1, setor = $2, prioridade = $3, status = COALESCE($4, status)
+         WHERE id = $5 RETURNING *`,
+        [descricao, setor, prioridade, status, id]
+    );
+    return result.rows[0];
 };
 
 exports.atualizarStatus = async (id, status) => {

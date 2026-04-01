@@ -21,6 +21,18 @@ exports.criarUsuario = async (req, res) => {
     }
 };
 
+exports.buscarUsuario = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const usuario = await usuarioModel.buscarPorId(id);
+        if (!usuario) return res.status(404).json({ erro: 'Usuário não encontrado' });
+        res.json(usuario);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ erro: 'Erro ao buscar usuário' });
+    }
+};
+
 exports.listarUsuarios = async (req, res) => {
     try {
         const usuarios = await usuarioModel.listar();

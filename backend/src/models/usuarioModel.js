@@ -8,6 +8,11 @@ exports.criar = async (nome, email) => {
     return result.rows[0];
 };
 
+exports.buscarPorId = async (id) => {
+    const result = await db.query('SELECT * FROM usuarios WHERE id = $1', [id]);
+    return result.rows[0];
+};
+
 exports.listar = async () => {
     const result = await db.query('SELECT * FROM usuarios ORDER BY id ASC');
     return result.rows;
@@ -27,6 +32,8 @@ exports.atualizar = async (id, nome, email) => {
 };
 
 exports.deletar = async (id) => {
+    // Primeiro deletar tarefas vinculadas
+    await db.query('DELETE FROM tarefas WHERE id_usuario = $1', [id]);
     const result = await db.query('DELETE FROM usuarios WHERE id = $1 RETURNING *', [id]);
     return result.rows[0];
 };

@@ -3,38 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kanban</title>
+  <title>Kanban - Gerenciamento de Tarefas</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    #loading { text-align: center; padding: 20px; color: #666; }
+    .error-alert { display: none; background: #fee; color: #c33; padding: 10px; margin: 10px; border-radius: 5px; text-align: center; }
+    .empty-state { text-align: center; padding: 40px; color: #999; font-style: italic; }
+  </style>
 </head>
 <body>
   <nav class="navbar">
     <span>Gerenciamento de Tarefas</span>
     <div class="nav-links">
-      <a href="index.html">Gerenciar Tarefas</a>
+      <a href="index.html">Gerenciar</a>
       <a href="cadastro-usuario.html">Cadastro de Usuários</a>
       <a href="cadastro-tarefa.html">Cadastro de Tarefas</a>
     </div>
   </nav>
 
+  <div id="error-alert" class="error-alert" role="alert" aria-live="polite"></div>
+
   <div class="main-container">
     <div class="kanban">
-      <div class="coluna">
+      <div class="coluna" data-status="a fazer">
         <h2>A Fazer</h2>
+        <div id="loading-afazer" class="loading" style="display: none;">Carregando...</div>
         <div id="afazer"></div>
       </div>
-      <div class="coluna">
+      <div class="coluna" data-status="fazendo">
         <h2>Fazendo</h2>
+        <div id="loading-fazendo" class="loading" style="display: none;">Carregando...</div>
         <div id="fazendo"></div>
       </div>
-      <div class="coluna">
+      <div class="coluna" data-status="pronto">
         <h2>Pronto</h2>
+        <div id="loading-pronto" class="loading" style="display: none;">Carregando...</div>
         <div id="pronto"></div>
       </div>
     </div>
 
     <div class="usuarios">
       <h2>Usuários Cadastrados</h2>
+      <div id="loading-usuarios" class="loading" style="display: none;">Carregando...</div>
       <ul id="listaUsuarios"></ul>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <h3 id="modal-title"></h3>
+      <div id="modal-body"></div>
+      <div class="modal-buttons">
+        <button id="modal-cancel">Cancelar</button>
+        <button id="modal-confirm">Confirmar</button>
+      </div>
     </div>
   </div>
 

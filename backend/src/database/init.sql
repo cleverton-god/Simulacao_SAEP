@@ -8,7 +8,7 @@ CREATE TABLE usuarios (
 
 CREATE TABLE tarefas (
     id SERIAL PRIMARY KEY,
-    id_usuario INT NOT NULL,
+    id_usuario INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
     descricao TEXT NOT NULL,
     setor VARCHAR(100) NOT NULL,
     prioridade VARCHAR(10) NOT NULL,
